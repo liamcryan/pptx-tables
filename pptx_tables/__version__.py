@@ -1,5 +1,5 @@
-__title__ = "Python-pptx-tables"
-__description__ = "Use Python-pptx-tables to create tables more easily through Python-pptx."
+__title__ = "pptx-tables"
+__description__ = "Use pptx-tables to create tables more easily through python-pptx."
 __version__ = "0.0.0"
 __author__ = "Liam Cryan"
 __author_email__ = "data.handyman.01@gmail.com"

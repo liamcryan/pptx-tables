@@ -1,8 +1,8 @@
-==================
-Python Pptx Tables
-==================
+===========
+Pptx Tables
+===========
 
-Use Python-pptx-tables to create tables more easily through Python-pptx.
+Use pptx_tables to create tables more easily through python-pptx.
 
 Example
 -------
