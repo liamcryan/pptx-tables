@@ -1,75 +1,40 @@
+from pptx_tables.columns import Columns
+from pptx_tables.rows import Rows
 
 
 class Collection(object):
     def __init__(self, data):
         self.data = data
-        self.idx = None
-        self.head = None
-        self.tail = None
+        self.columns = Columns(data)
+        self.rows = Rows(data)
 
-    def index_by(self, by):
-        if by == "rows":
-            indexed = {}
-            for i, r in enumerate(self.data):
-                indexed.update({i: r})
-            return indexed
+    def set_column_headers(self, headers):
+        """ Updates the column index to account for the headers and updates the data self.data.
 
-        if by == "columns":
-            def get_column_qty(_data):
-                """ this is for lists """
-                _cols = 0
-                for _r in _data:
-                    if len(_r) > _cols:
-                        _cols = len(_r)
-                return _cols
+        [[0, 1, 2],
+            [3, 4, 5],
+                [6, 7, 8]]
 
-            def get_column_keys(_data):
-                """ this is for dictionaries """
-                _cols = []
-                for _r in _data:
-                    for _c in _r:
-                        if _c not in _cols:
-                            _cols.append(_c)
-                return sorted(_cols)
+        [{"apples": 0, "bananas": 1, "pears": 2},
+             {"apples": 3, "bananas": 4, "pears": 5},
+             {"apples": 6, "bananas": 7, "pears": 8}]
 
-            if isinstance(self.data[0], dict):
-                cols = get_column_keys(self.data)
-                indexed = {i: [] for i in cols}
+        :param headers: a list of integers
+        :return: None
+        """
+        if isinstance(self.data[0], list):
+            self.data = [headers] + self.data
 
-                for r in self.data:
-                    for c in r:
-                        indexed[c].append(r[c])
+            increment = [i + 1 for i in self.rows.idx]
+            self.rows.idx = [0] + increment
 
-                return indexed
+        elif isinstance(self.data[0], dict):
+            datum = {}
+            for i, key in enumerate(self.columns.idx):
+                datum.update({key: headers[i]})
+            self.data = [datum] + self.data
 
-            elif isinstance(self.data[0], list):
-                cols = get_column_qty(self.data)
-                indexed = {i: [] for i in range(0, cols)}
+            increment = [i + 1 for i in self.rows.idx]
+            self.rows.idx = [0] + increment
 
-                for r in self.data:
-                    for j, c in enumerate(r):
-                        indexed[j].append(c)
 
-                return indexed
-
-    def slice(self, subset=None):
-        if isinstance(self.idx, list):
-            sliced = []
-            for i, key in enumerate(self.idx):
-                sliced.append({i: self.idx[i]})
-            return sliced
-
-        elif isinstance(self.idx, dict):
-            if not subset:
-                return self.idx
-            else:
-                sliced = []
-                for key in subset:
-                    sliced.append({key: self.idx[key]})
-                return sliced
-
-    def set_head(self, alias):
-        self.head = alias
-
-    def set_tail(self, alias):
-        self.tail = alias
