@@ -56,19 +56,19 @@ class PptxTable(object):
         table = shapes.add_table(*self.table_args).table
         self.pptx_table = table
 
-    def create_table(self, slide_index=0, rows_sort_order=None, columns_sort_order=None, column_headers=None,
-                     column_widths_weight=None):
+    def create_table(self, slide_index=0, rows_sort_order=None, columns_sort_order=None, columns_headers=None,
+                     columns_widths_weight=None):
         """ Sorts the rows/columns. Provides column headers.  Creates table. Puts data in a table.
 
         :param slide_index:  what slide do you want to put the table on?
         :param rows_sort_order:  list, how to sort rows
         :param columns_sort_order: list, how to sort columns
-        :param column_headers: list, what to call columns (dependent upon sorting of columns) for example:
+        :param columns_headers: list, what to call columns (dependent upon sorting of columns) for example:
                                 columns are sorted in this order : [0, 1, 2],
                                 columns headers should be something like : ["column_0", "column_1", "column_2"]
                                 columns are sorted in this order : [2, 1, 0],
                                 columns headers should be something like : ["column_2", "column_1", "column_0"]
-        :param column_widths_weight:  list, what is the weight given to each column,
+        :param columns_widths_weight:  list, what is the weight given to each column,
                                         sum of list should add to length of list to maintain table width
         :return: None
         """
@@ -76,13 +76,13 @@ class PptxTable(object):
             self.collection.rows.sort_order(rows_sort_order)
         if columns_sort_order:
             self.collection.columns.sort_order(columns_sort_order)
-        if column_headers:
-            self.collection.set_column_headers(column_headers)
+        if columns_headers:
+            self.collection.set_column_headers(columns_headers)
 
         self._add_table(slide_index)
 
-        if column_widths_weight:
-            self.set_columns_widths_weight(column_widths_weight)
+        if columns_widths_weight:
+            self.set_columns_widths_weight(columns_widths_weight)
 
         for i, row in enumerate(self.collection.rows.idx):
             for j, col in enumerate(self.collection.columns.idx):
@@ -135,8 +135,8 @@ if __name__ == "__main__":
     tbl1.create_table(slide_index=0,
                       rows_sort_order=[2, 1, 0],
                       columns_sort_order=[2, 1, 0],
-                      column_headers=["column2", "column1", "column0"],
-                      column_widths_weight=[.75, .75, 1.5])
+                      columns_headers=["column2", "column1", "column0"],
+                      columns_widths_weight=[.75, .75, 1.5])
     tbl1.save_pptx("test1.pptx")
 
     data2 = [{"apples": 0, "bananas": 1, "pears": 2},
@@ -149,6 +149,6 @@ if __name__ == "__main__":
     tbl2.create_table(slide_index=0,
                       rows_sort_order=[2, 1, 0],
                       columns_sort_order=["pears", "bananas", "apples"],
-                      column_headers=["Pears", "Bananas", "Apples"],
-                      column_widths_weight=[1, 1, 1])
+                      columns_headers=["Pears", "Bananas", "Apples"],
+                      columns_widths_weight=[1, 1, 1])
     tbl2.save_pptx("test2.pptx")

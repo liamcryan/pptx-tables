@@ -6,7 +6,7 @@ Use pptx_tables to create tables more easily through python-pptx.
 
 
 Features
---------
+========
 
 - Provide data formatted as a list of lists or a list of dictionaries
 
@@ -21,3 +21,111 @@ Features
 - Set cell alignment
 
 - Set the row height
+
+
+Samples
+=======
+
+Create a table of data on a slide
+---------------------------------
+
+>>>    data1 = [[0, 1, 2],
+>>>             [3, 4, 5],
+>>>             [6, 7, 8]]
+
+Here is the most basic way to do it using pptx_tables:
+
+>>>    from pptx_tables import PptxTable
+>>>
+>>>    tbl1 = PptxTable(data1)
+>>>    tbl1.create_table()
+>>>    tbl1.save_pptx("test1.pptx")
+
+|ImageLink|_
+
+.. |ImageLink| image:: ../img/sample1.png
+
+Set location of table
+---------------------
+
+>>>    from pptx.util import Inches, Pt  # this comes from Python-pptx
+>>>
+>>>    tbl2 = PptxTable(data1)
+>>>    tbl2.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
+>>>    tbl2.set_formatting(font_size=Pt(7), row_height=Inches(.5))
+>>>    tbl2.create_table(slide_index=0)
+>>>    tbl2.save_pptx("test1.pptx")
+
+|ImageLink|_
+
+.. |ImageLink| image:: ../img/sample2.png
+
+Create column headers
+---------------------
+
+>>>    tbl3 = PptxTable(data1, presentation)
+>>>    tbl3.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
+>>>    tbl3.set_formatting(font_size=Pt(7), row_height=Inches(.5))
+>>>    tbl3.create_table(slide_index=0,
+>>>                      columns_headers=["column0", "column1", "column2"])
+>>>    tbl3.save_pptx("test1.pptx")
+
+|ImageLink|_
+
+.. |ImageLink| image:: ../img/sample3.png
+
+Sort columns
+------------
+
+>>>    tbl4 = PptxTable(data1, presentation)
+>>>    tbl4.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
+>>>    tbl4.set_formatting(font_size=Pt(9), row_height=Inches(.5))
+>>>    tbl4.create_table(slide_index=0,
+>>>                      columns_sort_order=[2, 1, 0],
+>>>                      # notice the column headers need to be changed to match the column sort order
+>>>                      columns_headers=["column2", "column0", "column1"])
+>>>    tbl4.save_pptx("test1.pptx")
+
+
+|ImageLink|_
+
+.. |ImageLink| image:: ../img/sample4.png
+
+Set column widths
+-----------------
+
+>>>    tbl5 = PptxTable(data1, presentation)
+>>>    tbl5.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
+>>>    tbl5.set_formatting(font_size=Pt(9), row_height=Inches(.5))
+>>>    tbl5.create_table(slide_index=0,
+>>>                      columns_sort_order=[2, 1, 0],
+>>>                      # notice the column headers need to be changed to match the column sort order
+>>>                      columns_headers=["column2", "column0", "column1"],
+>>>                      # the numbers in the list correspond to the weight given to each column, 1 means unchanged
+>>>                      columns_widths_weight=[.75, .75, 1.5])
+>>>    tbl5.save_pptx("test1.pptx")
+
+|ImageLink|_
+
+.. |ImageLink| image:: ../img/sample5.png
+
+
+Add another table to the same slide
+-----------------------------------
+
+>>>    # here is some new data
+>>>    data2 = [{"apples": 0, "bananas": 1, "pears": 2},
+>>>             {"apples": 3, "bananas": 4, "pears": 5},
+>>>             {"apples": 6, "bananas": 7, "pears": 8}]
+>>>
+>>>    # get the presentation containing the previous table
+>>>    presentation = tbl5.prs
+>>>    tbl6 = PptxTable(data2, presentation)
+>>>    tbl6.set_table_location(left=Inches(0), top=Inches(3), width=Inches(4))
+>>>    tbl6.create_table(slide_index=0,
+>>>                      columns_headers=["Apples", "Bananas", "Pears"])
+>>>    tbl6.save_pptx("test1.pptx")
+
+|ImageLink|_
+
+.. |ImageLink| image:: ../img/sample6.png
