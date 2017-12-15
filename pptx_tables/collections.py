@@ -26,15 +26,6 @@ class Collection(object):
     def set_column_headers(self, headers):
         """ Updates the column index to account for the headers and updates the data self.data.
 
-        Here are examples of data for reference:
-        [[0, 1, 2],
-            [3, 4, 5],
-                [6, 7, 8]]
-
-        [{"apples": 0, "bananas": 1, "pears": 2},
-             {"apples": 3, "bananas": 4, "pears": 5},
-             {"apples": 6, "bananas": 7, "pears": 8}]
-
         :param headers: a list of integers
         :return: None
         """

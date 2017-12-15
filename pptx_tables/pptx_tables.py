@@ -55,15 +55,6 @@ class PptxTable(object):
     def create_table(self, slide_index=0, rows_sort_order=None, columns_sort_order=None, column_headers=None):
         """ Sorts the rows/columns. Provides column headers.  Creates table. Puts data in a table.
 
-        Here are examples of data for reference:
-        [[0, 1, 2],
-            [3, 4, 5],
-                [6, 7, 8]]
-
-        [{"apples": 0, "bananas": 1, "pears": 2},
-             {"apples": 3, "bananas": 4, "pears": 5},
-             {"apples": 6, "bananas": 7, "pears": 8}]
-
         :param slide_index:  what slide do you want to put the table on?
         :param rows_sort_order:  list, how to sort rows
         :param columns_sort_order: list, how to sort columns
