@@ -51,9 +51,9 @@ Set location of table and provide some formatting
 >>>    tbl2.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
 >>>    tbl2.set_formatting(font_size=Pt(7), row_height=Inches(.5))
 >>>    tbl2.create_table(slide_index=0)
->>>    tbl2.save_pptx("test1.pptx")
+>>>    tbl2.save_pptx("test2.pptx")
 
-.. image:: /docs/sample2.pptx
+.. image:: /docs/test2.pptx
 
 Create column headers
 ---------------------
@@ -63,9 +63,9 @@ Create column headers
 >>>    tbl3.set_formatting(font_size=Pt(7), row_height=Inches(.5))
 >>>    tbl3.create_table(slide_index=0,
 >>>                      columns_headers=["column0", "column1", "column2"])
->>>    tbl3.save_pptx("test1.pptx")
+>>>    tbl3.save_pptx("test3.pptx")
 
-.. image:: /docs/sample3.pptx
+.. image:: /docs/test3.pptx
 
 Sort columns
 ------------
@@ -77,9 +77,9 @@ Sort columns
 >>>                      columns_sort_order=[2, 1, 0],
 >>>                      # notice the column headers need to be changed to match the column sort order
 >>>                      columns_headers=["column2", "column0", "column1"])
->>>    tbl4.save_pptx("test1.pptx")
+>>>    tbl4.save_pptx("test4.pptx")
 
-.. image:: /docs/sample4.pptx
+.. image:: /docs/test4.pptx
 
 Set column widths
 -----------------
@@ -93,9 +93,9 @@ Set column widths
 >>>                      columns_headers=["column2", "column0", "column1"],
 >>>                      # the numbers in the list correspond to the weight given to each column, 1 means unchanged
 >>>                      columns_widths_weight=[.75, .75, 1.5])
->>>    tbl5.save_pptx("test1.pptx")
+>>>    tbl5.save_pptx("test5.pptx")
 
-.. image:: /docs/sample5.pptx
+.. image:: /docs/test5.pptx
 
 Add another table to the same slide
 -----------------------------------
@@ -113,6 +113,6 @@ Add another table to the same slide
 >>>                      # default sort order is alphabetically on the keys,
 >>>                      # so the column headers should be alphabetical in this case
 >>>                      columns_headers=["Apples", "Bananas", "Pears"])
->>>    tbl6.save_pptx("test1.pptx")
+>>>    tbl6.save_pptx("test6.pptx")
 
-.. image:: /docs/sample6.pptx
+.. image:: /docs/test6.pptx
