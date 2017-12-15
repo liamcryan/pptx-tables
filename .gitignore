@@ -1,6 +1,5 @@
 .idea
 .cache
-*.pptx
 *egg-info
 .tox
 *xls
