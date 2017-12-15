@@ -60,7 +60,7 @@ Set location of table
 Create column headers
 ---------------------
 
->>>    tbl3 = PptxTable(data1, presentation)
+>>>    tbl3 = PptxTable(data1)
 >>>    tbl3.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
 >>>    tbl3.set_formatting(font_size=Pt(7), row_height=Inches(.5))
 >>>    tbl3.create_table(slide_index=0,
@@ -72,7 +72,7 @@ Create column headers
 Sort columns
 ------------
 
->>>    tbl4 = PptxTable(data1, presentation)
+>>>    tbl4 = PptxTable(data1)
 >>>    tbl4.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
 >>>    tbl4.set_formatting(font_size=Pt(9), row_height=Inches(.5))
 >>>    tbl4.create_table(slide_index=0,
@@ -86,7 +86,7 @@ Sort columns
 Set column widths
 -----------------
 
->>>    tbl5 = PptxTable(data1, presentation)
+>>>    tbl5 = PptxTable(data1)
 >>>    tbl5.set_table_location(left=Inches(0), top=Inches(3), width=Inches(5))
 >>>    tbl5.set_formatting(font_size=Pt(9), row_height=Inches(.5))
 >>>    tbl5.create_table(slide_index=0,
@@ -110,7 +110,7 @@ Add another table to the same slide
 >>>    # get the presentation containing the previous table
 >>>    presentation = tbl5.prs
 >>>    tbl6 = PptxTable(data2, presentation)
->>>    tbl6.set_table_location(left=Inches(0), top=Inches(3), width=Inches(4))
+>>>    tbl6.set_table_location(left=Inches(0), top=Inches(5), width=Inches(4))
 >>>    tbl6.create_table(slide_index=0,
 >>>                      columns_headers=["Apples", "Bananas", "Pears"])
 >>>    tbl6.save_pptx("test1.pptx")
