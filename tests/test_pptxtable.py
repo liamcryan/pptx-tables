@@ -19,10 +19,10 @@ class TestPptxTable:
         tbl.create_table(slide_index=0,
                          rows_sort_order=[2, 1, 0],
                          columns_sort_order=[2, 1, 0],
-                         column_headers=["column1", "column2", "column3"])
-        assert tbl.pptx_table.cell(0, 0).text_frame.text == "column3"
-        assert tbl.pptx_table.cell(0, 1).text_frame.text == "column2"
-        assert tbl.pptx_table.cell(0, 2).text_frame.text == "column1"
+                         column_headers=["column2", "column1", "column0"])
+        assert tbl.pptx_table.cell(0, 0).text_frame.text == "column2"
+        assert tbl.pptx_table.cell(0, 1).text_frame.text == "column1"
+        assert tbl.pptx_table.cell(0, 2).text_frame.text == "column0"
         assert tbl.pptx_table.cell(1, 0).text_frame.text == "8"
         assert tbl.pptx_table.cell(1, 1).text_frame.text == "7"
         assert tbl.pptx_table.cell(1, 2).text_frame.text == "6"

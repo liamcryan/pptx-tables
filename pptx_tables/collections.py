@@ -29,13 +29,13 @@ class Collection(object):
         :param headers: a list of integers
         :return: None
         """
-        if isinstance(self.data[0], list):
-            self.data = [headers] + self.data
+        if isinstance(self.columns.idx[0], int):
+            self.data = [sorted(headers)] + self.data
 
             increment = [i + 1 for i in self.rows.idx]
             self.rows.idx = [0] + increment
 
-        elif isinstance(self.data[0], dict):
+        elif isinstance(self.columns.idx[0], str):
             datum = {}
             for i, key in enumerate(self.columns.idx):
                 datum.update({key: headers[i]})

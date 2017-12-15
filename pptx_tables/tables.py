@@ -1,5 +1,6 @@
 from pptx import Presentation
-from pptx.util import Inches
+from pptx.enum.text import PP_PARAGRAPH_ALIGNMENT
+from pptx.util import Inches, Pt
 
 from pptx_tables.collections import Collection
 
@@ -27,6 +28,9 @@ class PptxTable(object):
         self.prs = presentation
         self.table_args = None
         self.pptx_table = None
+        self.font_size = Pt(8)
+        self.row_height = Pt(.38)  # this should be a function of the font size
+        self.alignment = PP_PARAGRAPH_ALIGNMENT.CENTER
 
         self.collection = Collection(data=data)
 
@@ -52,7 +56,8 @@ class PptxTable(object):
         table = shapes.add_table(*self.table_args).table
         self.pptx_table = table
 
-    def create_table(self, slide_index=0, rows_sort_order=None, columns_sort_order=None, column_headers=None):
+    def create_table(self, slide_index=0, rows_sort_order=None, columns_sort_order=None, column_headers=None,
+                     column_widths_weight=None):
         """ Sorts the rows/columns. Provides column headers.  Creates table. Puts data in a table.
 
         :param slide_index:  what slide do you want to put the table on?
@@ -63,6 +68,8 @@ class PptxTable(object):
                                 columns headers should be something like : ["column_0", "column_1", "column_2"]
                                 columns are sorted in this order : [2, 1, 0],
                                 columns headers should be something like : ["column_2", "column_1", "column_0"]
+        :param column_widths_weight:  list, what is the weight given to each column,
+                                        sum of list should add to length of list to maintain table width
         :return: None
         """
         if rows_sort_order:
@@ -74,29 +81,62 @@ class PptxTable(object):
 
         self._add_table(slide_index)
 
+        if column_widths_weight:
+            self.set_columns_widths_weight(column_widths_weight)
+
         for i, row in enumerate(self.collection.rows.idx):
             for j, col in enumerate(self.collection.columns.idx):
                 self.pptx_table.cell(i, j).text = str(self.collection.data[row][col])
+                self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
+                self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
 
     def save_pptx(self, file_name):
+        """ save a presentation """
         self.prs.save(file_name)
 
-    def set_table_location(self, left, top, width, height):
+    def set_table_location(self, left, top, width, height=None):
+        """ set the table's location """
         self.table_args = [None, None, left, top, width, height]
 
     def set_table_size(self, rows, columns):
         self.table_args[0] = rows
         self.table_args[1] = columns
+        if not self.table_args[5]:
+            height = self.row_height / 914400  # Inches(1) -> 914400
+            self.table_args[5] = Inches(rows * height)
+
+    def set_columns_widths_weight(self, column_widths):
+        """ set the proportion of space each column takes """
+        for j, col in enumerate(self.collection.columns.idx):
+            table_width = self.table_args[4]/914400  # Inches(1) -> 914400
+            table_columns = self.table_args[1]
+            if isinstance(col, int):
+                column_proportion = column_widths[col]
+                self.pptx_table.columns[col].width = Inches(column_proportion * (table_width / table_columns))
+            elif isinstance(col, str):
+                column_proportion = column_widths[j]
+                self.pptx_table.columns[j].width = Inches(column_proportion * (table_width / table_columns))
+
+    def set_formatting(self, font_size=None, alignment=None, row_height=None):
+        """ set the formatting, default is used if this method is not called """
+        if font_size:
+            self.font_size = font_size
+        if alignment:
+            self.alignment = alignment
+        if row_height:
+            self.row_height = row_height
 
 if __name__ == "__main__":
     data1 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
     tbl1 = PptxTable(data1)
-    tbl1.set_table_location(Inches(0), Inches(1), Inches(5), Inches(2))
+    tbl1.set_table_location(left=Inches(0), top=Inches(1), width=Inches(5))
+    tbl1.set_formatting(font_size=Pt(7), alignment=PP_PARAGRAPH_ALIGNMENT.LEFT, row_height=Inches(1))
     tbl1.create_table(slide_index=0,
                       rows_sort_order=[2, 1, 0],
                       columns_sort_order=[2, 1, 0],
-                      column_headers=["column1", "column2", "column3"])
+                      column_headers=["column2", "column1", "column0"],
+                      column_widths_weight=[.75, .75, 1.5])
     tbl1.save_pptx("test1.pptx")
 
     data2 = [{"apples": 0, "bananas": 1, "pears": 2},
@@ -109,5 +149,6 @@ if __name__ == "__main__":
     tbl2.create_table(slide_index=0,
                       rows_sort_order=[2, 1, 0],
                       columns_sort_order=["pears", "bananas", "apples"],
-                      column_headers=["Pears", "Bananas", "Apples"])
+                      column_headers=["Pears", "Bananas", "Apples"],
+                      column_widths_weight=[1, 1, 1])
     tbl2.save_pptx("test2.pptx")

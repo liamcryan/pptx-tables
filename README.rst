@@ -14,12 +14,10 @@ Features
 
 - Provide custom sort order on columns
 
+- Set columns width
 
+- Set font size
 
-Roadmap
--------
+- Set cell alignment
 
-- set columns width
-- set rows width
-- font size
-- cell alignment
+- Set the row height

@@ -26,7 +26,11 @@ class Columns(object):
         """
         indexed = []
         for i, col in enumerate(data[0]):
-            indexed.append(i) if isinstance(col, int) else indexed.append(col)
+            if isinstance(col, int):
+                indexed.append(i)
+            elif isinstance(col, str):
+                indexed.append(col)
+                indexed = sorted(indexed)
         return indexed
 
     def sort_order(self, order):
