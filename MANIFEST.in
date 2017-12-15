@@ -1,3 +1,4 @@
 include README.rst
 include HISTORY.rst
 include img/*
+include sample.py
