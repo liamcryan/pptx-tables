@@ -26,10 +26,10 @@ class PptxTable(object):
                             will be created.
         """
         self.prs = presentation
-        self.table_args = None
+        self.table_args = [None, None, Inches(0), Inches(0), Inches(2), None]  # default placement
         self.pptx_table = None
         self.font_size = Pt(8)
-        self.row_height = Pt(.38)  # this should be a function of the font size
+        self.row_height = Inches(.38)
         self.alignment = PP_PARAGRAPH_ALIGNMENT.CENTER
 
         self.collection = Collection(data=data)
