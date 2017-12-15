@@ -41,9 +41,8 @@ Here is the most basic way to do it using pptx_tables:
 >>>    tbl1.create_table()
 >>>    tbl1.save_pptx("test1.pptx")
 
-|ImageLink|_
 
-.. |ImageLink| image:: ../img/sample1.png
+.. image:: ../img/sample1.png
 
 Set location of table
 ---------------------
@@ -56,9 +55,7 @@ Set location of table
 >>>    tbl2.create_table(slide_index=0)
 >>>    tbl2.save_pptx("test1.pptx")
 
-|ImageLink|_
-
-.. |ImageLink| image:: ../img/sample2.png
+.. image:: ../img/sample2.png
 
 Create column headers
 ---------------------
@@ -70,9 +67,7 @@ Create column headers
 >>>                      columns_headers=["column0", "column1", "column2"])
 >>>    tbl3.save_pptx("test1.pptx")
 
-|ImageLink|_
-
-.. |ImageLink| image:: ../img/sample3.png
+.. image:: ../img/sample3.png
 
 Sort columns
 ------------
@@ -86,10 +81,7 @@ Sort columns
 >>>                      columns_headers=["column2", "column0", "column1"])
 >>>    tbl4.save_pptx("test1.pptx")
 
-
-|ImageLink|_
-
-.. |ImageLink| image:: ../img/sample4.png
+.. image:: ../img/sample4.png
 
 Set column widths
 -----------------
@@ -105,10 +97,7 @@ Set column widths
 >>>                      columns_widths_weight=[.75, .75, 1.5])
 >>>    tbl5.save_pptx("test1.pptx")
 
-|ImageLink|_
-
-.. |ImageLink| image:: ../img/sample5.png
-
+.. image:: ../img/sample5.png
 
 Add another table to the same slide
 -----------------------------------
@@ -126,6 +115,4 @@ Add another table to the same slide
 >>>                      columns_headers=["Apples", "Bananas", "Pears"])
 >>>    tbl6.save_pptx("test1.pptx")
 
-|ImageLink|_
-
-.. |ImageLink| image:: ../img/sample6.png
+.. image:: ../img/sample6.png
