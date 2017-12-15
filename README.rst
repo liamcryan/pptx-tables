@@ -102,7 +102,7 @@ Set column widths
 Add another table to the same slide
 -----------------------------------
 
->>>    # here is some new data
+>>>    # here is some new data, oh by the way, it's also formatted differently
 >>>    data2 = [{"apples": 0, "bananas": 1, "pears": 2},
 >>>             {"apples": 3, "bananas": 4, "pears": 5},
 >>>             {"apples": 6, "bananas": 7, "pears": 8}]
@@ -112,6 +112,8 @@ Add another table to the same slide
 >>>    tbl6 = PptxTable(data2, presentation)
 >>>    tbl6.set_table_location(left=Inches(0), top=Inches(5), width=Inches(4))
 >>>    tbl6.create_table(slide_index=0,
+>>>                      # default sort order is alphabetically on the keys,
+>>>                      # so the column headers should be alphabetical in this case
 >>>                      columns_headers=["Apples", "Bananas", "Pears"])
 >>>    tbl6.save_pptx("test1.pptx")
 
