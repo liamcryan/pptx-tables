@@ -1,1 +1,1 @@
-from .tables import *
+from .pptx_tables import *

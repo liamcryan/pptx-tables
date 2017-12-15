@@ -11,6 +11,7 @@ class PptxTable(object):
         prs:  a Python-pptx presentation
         table_args:  the arguments needed for Python-pptx presentation.add_table method
         pptx_table:  the table returned from the Python-pptx presentation.add_table method
+        collection:  the class representing data portion of the table
 
     """
     def __init__(self, data, presentation=None):
