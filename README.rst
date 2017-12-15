@@ -40,7 +40,7 @@ Create a table of data on a slide
 >>>    tbl1.save_pptx("test1.pptx")
 
 
-.. image:: /img/test1.pptx
+.. image:: /docs/test1.pptx
 
 Set location of table and provide some formatting
 -------------------------------------------------
@@ -53,7 +53,7 @@ Set location of table and provide some formatting
 >>>    tbl2.create_table(slide_index=0)
 >>>    tbl2.save_pptx("test1.pptx")
 
-.. image:: /img/sample2.png
+.. image:: /docs/sample2.pptx
 
 Create column headers
 ---------------------
@@ -65,7 +65,7 @@ Create column headers
 >>>                      columns_headers=["column0", "column1", "column2"])
 >>>    tbl3.save_pptx("test1.pptx")
 
-.. image:: /img/sample3.png
+.. image:: /docs/sample3.pptx
 
 Sort columns
 ------------
@@ -79,7 +79,7 @@ Sort columns
 >>>                      columns_headers=["column2", "column0", "column1"])
 >>>    tbl4.save_pptx("test1.pptx")
 
-.. image:: /img/sample4.png
+.. image:: /docs/sample4.pptx
 
 Set column widths
 -----------------
@@ -95,7 +95,7 @@ Set column widths
 >>>                      columns_widths_weight=[.75, .75, 1.5])
 >>>    tbl5.save_pptx("test1.pptx")
 
-.. image:: /img/sample5.png
+.. image:: /docs/sample5.pptx
 
 Add another table to the same slide
 -----------------------------------
@@ -115,4 +115,4 @@ Add another table to the same slide
 >>>                      columns_headers=["Apples", "Bananas", "Pears"])
 >>>    tbl6.save_pptx("test1.pptx")
 
-.. image:: /img/sample6.png
+.. image:: /docs/sample6.pptx
