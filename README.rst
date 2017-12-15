@@ -29,13 +29,11 @@ Samples
 Create a table of data on a slide
 ---------------------------------
 
+>>>    from pptx_tables import PptxTable
+>>>
 >>>    data1 = [[0, 1, 2],
 >>>             [3, 4, 5],
 >>>             [6, 7, 8]]
-
-Here is the most basic way to do it using pptx_tables:
-
->>>    from pptx_tables import PptxTable
 >>>
 >>>    tbl1 = PptxTable(data1)
 >>>    tbl1.create_table()
@@ -44,8 +42,8 @@ Here is the most basic way to do it using pptx_tables:
 
 .. image:: /img/sample1.png
 
-Set location of table
----------------------
+Set location of table and provide some formatting
+-------------------------------------------------
 
 >>>    from pptx.util import Inches, Pt  # this comes from Python-pptx
 >>>
