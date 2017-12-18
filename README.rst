@@ -42,13 +42,8 @@ Create a table of data on a slide
 
 .. raw:: html
 
-    <iframe src="http://docs.google.com/gview?url=docs/test1.pdf&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+    <a href="docs/test1.pdf">test.pdf</a>
 
-    <embed src="docs/test1.pdf" type="application/pdf" height="300px" width="100%">
-
-    <object data="docs/test1.pdf" type="application/pdf" width="300" height="200">
-        <a href="docs/test1.pdf">test.pdf</a>
-    </object>
 
 Set location of table and provide some formatting
 -------------------------------------------------
