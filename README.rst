@@ -44,6 +44,9 @@ Create a table of data on a slide
 
     <a href="docs/test1.pdf">test.pdf</a>
 
+    <object data="docs/test1.pdf" type="application/pdf" width="100%"">
+
+    </object>
 
 Set location of table and provide some formatting
 -------------------------------------------------
