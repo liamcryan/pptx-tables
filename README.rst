@@ -41,9 +41,8 @@ Create a table of data on a slide
 
 
 .. raw:: html
-    <embed>
-        <object width="400" height="400" data="https://github.com/liamcryan/pptx-tables/blob/master/docs/test1.pdf"></object>
-    </embed>
+        <object data="/docs/test1.pdf" type="application/pdf">
+
 Set location of table and provide some formatting
 -------------------------------------------------
 
