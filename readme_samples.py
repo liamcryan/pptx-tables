@@ -4,6 +4,7 @@ from pptx_tables import PptxTable
 
 from pptx.util import Inches, Pt  # this comes from Python-pptx
 
+import subprocess as sp
 
 here = os.path.abspath(os.path.dirname(__file__))
 
