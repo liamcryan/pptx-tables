@@ -42,8 +42,8 @@ Create a table of data on a slide
 
 .. raw:: html
 
-    <object data="data/test1.pdf" type="application/pdf" width="300" height="200">
-        <a href="data/test1.pdf">test.pdf</a>
+    <object data="docs/test1.pdf" type="application/pdf" width="300" height="200">
+        <a href="docs/test1.pdf">test.pdf</a>
     </object>
 
 Set location of table and provide some formatting
