@@ -48,6 +48,9 @@ Create a table of data on a slide
 
     </object>
 
+.. raw:: pdf
+   :file: docs/test1.pdf
+
 Set location of table and provide some formatting
 -------------------------------------------------
 
