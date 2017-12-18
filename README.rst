@@ -42,7 +42,7 @@ Create a table of data on a slide
 
 .. raw:: html
 
-   <big>text</big>
+   <object width="400" height="400" data="/docs/test1.pdf"></object>
 
 Set location of table and provide some formatting
 -------------------------------------------------
