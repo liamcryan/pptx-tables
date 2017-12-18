@@ -42,7 +42,7 @@ Create a table of data on a slide
 
 .. raw:: html
 
-<object data="https://github.com/liamcryan/pptx-tables/blob/master/docs/test1.pdf"></object>
+    <object data="https://github.com/liamcryan/pptx-tables/blob/master/docs/test1.pdf"></object>
 
 Set location of table and provide some formatting
 -------------------------------------------------
