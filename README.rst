@@ -40,7 +40,7 @@ Create a table of data on a slide
 >>>    tbl1.save_pptx("test1.pptx")
 
 .. _relative link: /docs/test1.pdf
-.. image:: /docs/test1.pdf
+
 
 Set location of table and provide some formatting
 -------------------------------------------------
