@@ -39,8 +39,10 @@ Create a table of data on a slide
 >>>    tbl1.create_table()
 >>>    tbl1.save_pptx("test1.pptx")
 
-.. _relative link: /docs/test1.pdf
 
+.. raw:: html
+
+    <embed src="/docs/test1/.pdf"></embed>
 
 Set location of table and provide some formatting
 -------------------------------------------------
