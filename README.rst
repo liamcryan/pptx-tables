@@ -41,7 +41,8 @@ Create a table of data on a slide
 
 
 .. raw:: html
-    <p>Hi, is this working?</p>
+
+   <big>text</big>
 
 Set location of table and provide some formatting
 -------------------------------------------------
