@@ -26,9 +26,9 @@ class Columns(object):
         """
         indexed = []
         for i, col in enumerate(data[0]):
-            if isinstance(col, int):
+            if isinstance(data[0], list):
                 indexed.append(i)
-            elif isinstance(col, str):
+            elif isinstance(data[0], dict):
                 indexed.append(col)
                 indexed = sorted(indexed)
         return indexed
