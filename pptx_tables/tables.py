@@ -31,6 +31,8 @@ class PptxTable(object):
         self.font_size = Pt(8)
         self.row_height = Inches(.38)
         self.alignment = PP_PARAGRAPH_ALIGNMENT.CENTER
+        self.first_row = True
+        self.first_col = False
 
         self.collection = Collection(data=data)
 
@@ -57,7 +59,7 @@ class PptxTable(object):
         self.pptx_table = table
 
     def create_table(self, slide_index=0, rows_sort_order=None, columns_sort_order=None, columns_headers=None,
-                     columns_widths_weight=None):
+                     columns_widths_weight=None, transpose=False):
         """ Sorts the rows/columns. Provides column headers.  Creates table. Puts data in a table.
 
         :param slide_index:  what slide do you want to put the table on?
@@ -70,6 +72,7 @@ class PptxTable(object):
                                 columns headers should be something like : ["column_2", "column_1", "column_0"]
         :param columns_widths_weight:  list, what is the weight given to each column,
                                         sum of list should add to length of list to maintain table width
+        :param transpose:  if True, the transpose will be displayed
         :return: None
         """
         if rows_sort_order:
@@ -78,17 +81,32 @@ class PptxTable(object):
             self.collection.columns.sort_order(columns_sort_order)
         if columns_headers:
             self.collection.set_column_headers(columns_headers)
+        if transpose:
+            self.collection.rows.idx, self.collection.columns.idx = \
+                self.collection.columns.idx, self.collection.rows.idx
 
-        self._add_table(slide_index)
+            self._add_table(slide_index)
+
+            self.pptx_table.first_row = self.first_col
+            self.pptx_table.first_col = self.first_row
+        else:
+            self._add_table(slide_index)
+            self.pptx_table.first_row = self.first_row
+            self.pptx_table.first_col = self.first_col
 
         if columns_widths_weight:
             self.set_columns_widths_weight(columns_widths_weight)
 
         for i, row in enumerate(self.collection.rows.idx):
             for j, col in enumerate(self.collection.columns.idx):
-                self.pptx_table.cell(i, j).text = str(self.collection.data[row][col])
-                self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
-                self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
+                if not transpose:
+                    self.pptx_table.cell(i, j).text = str(self.collection.data[row][col])
+                    self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
+                    self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
+                else:
+                    self.pptx_table.cell(i, j).text = str(self.collection.data[col][row])
+                    self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
+                    self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
 
     def save_pptx(self, file_name):
         """ save a presentation """
@@ -117,7 +135,7 @@ class PptxTable(object):
                 column_proportion = column_widths[j]
                 self.pptx_table.columns[j].width = Inches(column_proportion * (table_width / table_columns))
 
-    def set_formatting(self, font_size=None, alignment=None, row_height=None):
+    def set_formatting(self, font_size=None, alignment=None, row_height=None, first_row=None, first_col=None):
         """ set the formatting, default is used if this method is not called """
         if font_size:
             self.font_size = font_size
@@ -125,9 +143,23 @@ class PptxTable(object):
             self.alignment = alignment
         if row_height:
             self.row_height = row_height
+        if first_row:
+            self.first_row = first_row
+        if first_col:
+            self.first_col = first_col
 
 if __name__ == "__main__":
     data1 = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+
+    tbl0 = PptxTable(data1)
+    tbl0.set_table_location(left=Inches(0), top=Inches(1), width=Inches(5))
+    tbl0.set_formatting(font_size=Pt(7), alignment=PP_PARAGRAPH_ALIGNMENT.LEFT, row_height=Inches(1))
+    tbl0.create_table(slide_index=0,
+                      rows_sort_order=[2, 1, 0],
+                      columns_sort_order=[2, 1, 0],
+                      columns_headers=["column2", "column1", "column0"],
+                      columns_widths_weight=[.75, .75, 1.5], )
+    tbl0.save_pptx("test0.pptx")
 
     tbl1 = PptxTable(data1)
     tbl1.set_table_location(left=Inches(0), top=Inches(1), width=Inches(5))
@@ -136,7 +168,8 @@ if __name__ == "__main__":
                       rows_sort_order=[2, 1, 0],
                       columns_sort_order=[2, 1, 0],
                       columns_headers=["column2", "column1", "column0"],
-                      columns_widths_weight=[.75, .75, 1.5])
+                      columns_widths_weight=[1.6, .8, .8, .8],
+                      transpose=True)
     tbl1.save_pptx("test1.pptx")
 
     data2 = [{"apples": 0, "bananas": 1, "pears": 2},
@@ -152,3 +185,14 @@ if __name__ == "__main__":
                       columns_headers=["Pears", "Bananas", "Apples"],
                       columns_widths_weight=[1, 1, 1])
     tbl2.save_pptx("test2.pptx")
+
+    # data3 = [[1, 1], [0, 1], [2, 4], [3, 6]]
+    tbl3 = PptxTable(data2)
+    tbl3.set_formatting(first_row=True, first_col=False)
+    tbl3.create_table(slide_index=0,
+                      rows_sort_order=[2, 1, 0],
+                      columns_sort_order=["pears", "bananas", "apples"],
+                      columns_headers=["Pears", "Bananas", "Apples"],
+                      columns_widths_weight=[1.7, .9, .9, .9],  # since transpose, we want to have 4 cols instead of 3
+                      transpose=True)
+    tbl3.save_pptx("test3.pptx")

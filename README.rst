@@ -129,3 +129,18 @@ Add another table to the same slide
 .. raw:: html
 
     <a href="docs/test6.pdf">See the slide here</a>
+
+Transpose a table
+-----------------
+
+>>> tbl7 = PptxTable(data2)
+>>> tbl7.set_table_location(left=Inches(2), top=Inches(1), width=Inches(4))
+>>> tbl7.create_table(slide_index=0,
+>>>                   columns_headers=["Apples", "Bananas", "Pears"],  # column headers become the row headers
+>>>                   columns_widths_weight=[1.5, .5, .5, .5],  # since transpose need 4 columns weights instead of 3
+>>>                   transpose=True)
+>>> tbl7.save_pptx(os.path.join(here, "docs", "test7.pptx"))
+
+.. raw:: html
+
+    <a href="docs/test7.pdf">See the slide here</a>

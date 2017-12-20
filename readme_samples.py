@@ -60,3 +60,11 @@ tbl6.create_table(slide_index=0,
                   # so the column headers should be alphabetical in this case
                   columns_headers=["Apples", "Bananas", "Pears"])
 tbl6.save_pptx(os.path.join(here, "docs", "test6.pptx"))
+
+tbl7 = PptxTable(data2)
+tbl7.set_table_location(left=Inches(2), top=Inches(1), width=Inches(4))
+tbl7.create_table(slide_index=0,
+                  columns_headers=["Apples", "Bananas", "Pears"],
+                  columns_widths_weight=[1.5, .5, .5, .5],  # since transpose need 4 columns weights instead of 3
+                  transpose=True)
+tbl7.save_pptx(os.path.join(here, "docs", "test7.pptx"))
