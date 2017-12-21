@@ -23,6 +23,21 @@ class Collection(object):
         self.columns = Columns(data)
         self.rows = Rows(data)
 
+    def f(self):
+        """ This method cleans the data if is a dictionary.
+
+        example:  [{"wk": 1, "apple": 1}, {"wk": 1, "banana": 2}]  --> [{"wk": 1, "apple": 1, "banana": 2}]
+
+        :return:
+        """
+        def find_common_keys(_data):
+            _common_keys = set()
+            for d in _data:
+                _common_keys &= set(d)
+
+        common_keys = find_common_keys(self.data)
+
+
     def set_column_headers(self, headers):
         """ Updates the column index to account for the headers and updates the data self.data.
 

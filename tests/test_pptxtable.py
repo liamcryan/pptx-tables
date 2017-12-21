@@ -13,6 +13,12 @@ class TestPptxTable:
              {"apples": 3, "bananas": 4, "pears": 5},
              {"apples": 6, "bananas": 7, "pears": 8}]
 
+    data3 = [[1, 2],
+             [3, 4]]
+
+    data4 = [{"1": 1, "2": 2},
+             {"1": 3, "2": 4}]
+
     def test_create_table_data1(self):
         tbl = PptxTable(self.data1)
         tbl.set_table_location(Inches(0), Inches(1), Inches(5), Inches(2))
@@ -65,3 +71,22 @@ class TestPptxTable:
         for j in [0, 1, 2, 3]:
             with pytest.raises(IndexError):
                 print(tbl.pptx_table.cell(4, j))
+
+    def test_create_table_data3_transpose(self):
+        tbl = PptxTable(self.data3)
+
+        tbl.create_table(transpose=True)
+        assert tbl.pptx_table.cell(0, 0).text_frame.text == "1"
+        assert tbl.pptx_table.cell(0, 1).text_frame.text == "3"
+        assert tbl.pptx_table.cell(1, 0).text_frame.text == "2"
+        assert tbl.pptx_table.cell(1, 1).text_frame.text == "4"
+
+    def test_create_table_data4_transpose(self):
+        tbl = PptxTable(self.data4)
+
+        tbl.create_table(transpose=True)
+        assert tbl.pptx_table.cell(0, 0).text_frame.text == "1"
+        assert tbl.pptx_table.cell(0, 1).text_frame.text == "3"
+        assert tbl.pptx_table.cell(1, 0).text_frame.text == "2"
+        assert tbl.pptx_table.cell(1, 1).text_frame.text == "4"
+
