@@ -89,4 +89,3 @@ class TestPptxTable:
         assert tbl.pptx_table.cell(0, 1).text_frame.text == "3"
         assert tbl.pptx_table.cell(1, 0).text_frame.text == "2"
         assert tbl.pptx_table.cell(1, 1).text_frame.text == "4"
-
