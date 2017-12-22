@@ -128,4 +128,4 @@ Transpose a table
 >>>                   transpose=True)
 >>> tbl7.save_pptx(os.path.join(here, "docs", "test7.pptx"))
 
-.. image:: /docs/test6.png
+.. image:: /docs/test7.png
