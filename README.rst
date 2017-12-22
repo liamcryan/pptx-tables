@@ -39,7 +39,7 @@ Create a table of data on a slide
 >>>    tbl1.create_table()
 >>>    tbl1.save_pptx("test1.pptx")
 
-.. image:: /docs/test1.png.
+.. image:: /docs/test1.png
 
 .. raw:: html
 
