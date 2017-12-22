@@ -44,3 +44,11 @@ class Collection(object):
 
             increment = [i + 1 for i in self.rows.idx]
             self.rows.idx = [0] + increment
+
+    def f(self):
+        """ {"store": "Aldi", "region": "N", "week": 1, "profit": 100},
+            {"store": "Aldi", "region": "S", "week": 1, "profit": 200},
+            {"store": "Aldi", "region": "N", "week": 2, "profit
+
+         """
+        pass
