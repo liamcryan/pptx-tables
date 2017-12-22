@@ -41,10 +41,6 @@ Create a table of data on a slide
 
 .. image:: /docs/test1.png
 
-.. raw:: html
-
-    <a href="docs/test1.pdf">See the slide here</a>
-
 
 Set location of table and provide some formatting
 -------------------------------------------------
@@ -57,9 +53,7 @@ Set location of table and provide some formatting
 >>>    tbl2.create_table(slide_index=0)
 >>>    tbl2.save_pptx("test2.pptx")
 
-.. raw:: html
-
-    <a href="docs/test2.pdf">See the slide here</a>
+.. image:: /docs/test2.png
 
 Create column headers
 ---------------------
@@ -71,9 +65,7 @@ Create column headers
 >>>                      columns_headers=["column0", "column1", "column2"])
 >>>    tbl3.save_pptx("test3.pptx")
 
-.. raw:: html
-
-    <a href="docs/test3.pdf">See the slide here</a>
+.. image:: /docs/test3.png
 
 Sort columns
 ------------
@@ -87,9 +79,7 @@ Sort columns
 >>>                      columns_headers=["column2", "column0", "column1"])
 >>>    tbl4.save_pptx("test4.pptx")
 
-.. raw:: html
-
-    <a href="docs/test4.pdf">See the slide here</a>
+.. image:: /docs/test4.png
 
 Set column widths
 -----------------
@@ -105,9 +95,7 @@ Set column widths
 >>>                      columns_widths_weight=[.75, .75, 1.5])
 >>>    tbl5.save_pptx("test5.pptx")
 
-.. raw:: html
-
-    <a href="docs/test5.pdf">See the slide here</a>
+.. image:: /docs/test5.png
 
 Add another table to the same slide
 -----------------------------------
@@ -127,9 +115,7 @@ Add another table to the same slide
 >>>                      columns_headers=["Apples", "Bananas", "Pears"])
 >>>    tbl6.save_pptx("test6.pptx")
 
-.. raw:: html
-
-    <a href="docs/test6.pdf">See the slide here</a>
+.. image:: /docs/test6.png
 
 Transpose a table
 -----------------
@@ -142,6 +128,4 @@ Transpose a table
 >>>                   transpose=True)
 >>> tbl7.save_pptx(os.path.join(here, "docs", "test7.pptx"))
 
-.. raw:: html
-
-    <a href="docs/test7.pdf">See the slide here</a>
+.. image:: /docs/test6.png
