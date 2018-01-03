@@ -27,7 +27,7 @@ class Collection(object):
     def set_column_headers(self, headers):
         """ Updates the column index to account for the headers and updates the data self.data.
 
-        :param headers: a list of integers
+        :param headers: a list of integers or keys
         :return: None
         """
         if isinstance(self.columns.idx[0], int):
@@ -45,10 +45,24 @@ class Collection(object):
             increment = [i + 1 for i in self.rows.idx]
             self.rows.idx = [0] + increment
 
-    def f(self):
-        """ {"store": "Aldi", "region": "N", "week": 1, "profit": 100},
-            {"store": "Aldi", "region": "S", "week": 1, "profit": 200},
-            {"store": "Aldi", "region": "N", "week": 2, "profit
+    def set_column_footers(self, footers):
+        """ Updates the column index to account for the headers and updates the data self.data.
 
-         """
-        pass
+        :param footers: a list of integers or keys
+        :return: None
+        """
+        if isinstance(self.columns.idx[0], int):
+            self.data += [sorted(footers)]
+
+            increment = [i + 1 for i in self.rows.idx]
+            self.rows.idx = [0] + increment
+
+        elif isinstance(self.columns.idx[0], str):
+            datum = {}
+            for i, key in enumerate(self.columns.idx):
+                datum.update({key: footers[i]})
+            self.data += [datum]
+
+            increment = [i + 1 for i in self.rows.idx]
+            self.rows.idx = [0] + increment
+
