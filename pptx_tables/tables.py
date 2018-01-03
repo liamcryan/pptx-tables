@@ -110,13 +110,19 @@ class PptxTable(object):
         for i, row in enumerate(self.collection.rows.idx):
             for j, col in enumerate(self.collection.columns.idx):
                 if not transpose:
-                    self.pptx_table.cell(i, j).text = str(self.collection.data[row][col])
+                    if self.collection.data[row][col] is None:
+                        self.pptx_table.cell(i, j).text = ""
+                    else:
+                        self.pptx_table.cell(i, j).text = str(self.collection.data[row][col])
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
                     self.pptx_table.cell(i, j).margin_top = 0
                     self.pptx_table.cell(i, j).vertical_anchor = MSO_VERTICAL_ANCHOR.TOP
                 else:
-                    self.pptx_table.cell(i, j).text = str(self.collection.data[col][row])
+                    if self.collection.data[col][row] is None:
+                        self.pptx_table.cell(i, j).text = ""
+                    else:
+                        self.pptx_table.cell(i, j).text = str(self.collection.data[col][row])
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
                     self.pptx_table.cell(i, j).margin_top = 0
