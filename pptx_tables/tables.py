@@ -116,7 +116,6 @@ class PptxTable(object):
                         self.pptx_table.cell(i, j).text = str(self.collection.data[row][col])
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
-                    self.pptx_table.cell(i, j).margin_top = 0
                     self.pptx_table.cell(i, j).vertical_anchor = MSO_VERTICAL_ANCHOR.TOP
                 else:
                     if self.collection.data[col][row] is None:
@@ -125,7 +124,6 @@ class PptxTable(object):
                         self.pptx_table.cell(i, j).text = str(self.collection.data[col][row])
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].font.size = self.font_size
                     self.pptx_table.cell(i, j).text_frame.paragraphs[0].alignment = self.alignment
-                    self.pptx_table.cell(i, j).margin_top = 0
                     self.pptx_table.cell(i, j).vertical_anchor = MSO_VERTICAL_ANCHOR.TOP
 
     def save_pptx(self, file_name):
@@ -197,7 +195,7 @@ if __name__ == "__main__":
     #                   transpose=True)
     # tbl1.save_pptx("test1.pptx")
 
-    data2 = [{"apples": 0, "bananas": 1, "pears": 2},
+    data2 = [{"apples": None, "bananas": 1, "pears": 2},
              {"apples": 3, "bananas": 4, "pears": 5},
              {"apples": 6, "bananas": 7, "pears": 8}]
 
